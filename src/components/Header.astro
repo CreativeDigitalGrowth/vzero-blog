@@ -1,5 +1,8 @@
 ---
-import { SITE_TITLE, FEATURES } from '../consts';
+// Renders as a sticky left sidebar at wide viewports and a horizontal top bar on
+// narrow ones — see .site-sidebar in global.css. Kept the filename Header.astro since
+// nothing else needs to change to find it; it plays the sidebar's role now.
+import { SITE_TITLE, SITE_DESCRIPTION, FEATURES } from '../consts';
 import { withBase } from '../lib/url';
 import ThemeToggle from './ThemeToggle.astro';
 
@@ -20,12 +23,17 @@ const isCurrent = (href: string) => {
 };
 ---
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href={withBase('/')}>
-      <span class="mark" aria-hidden="true">{SITE_TITLE.charAt(0)}</span>
-      {SITE_TITLE}
-    </a>
+<header class="site-sidebar">
+  <div class="sidebar-inner">
+    <div class="sidebar-top">
+      <a class="brand" href={withBase('/')}>
+        <span class="mark" aria-hidden="true">{SITE_TITLE.charAt(0)}</span>
+        {SITE_TITLE}
+      </a>
+      <ThemeToggle />
+    </div>
+
+    <p class="sidebar-tagline">{SITE_DESCRIPTION}</p>
 
     <nav class="site-nav" aria-label="Primary">
       {
@@ -36,7 +44,5 @@ const isCurrent = (href: string) => {
         ))
       }
     </nav>
-
-    <ThemeToggle />
   </div>
 </header>

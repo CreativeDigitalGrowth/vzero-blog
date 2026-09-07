@@ -30,10 +30,12 @@ const { narrow = false, ...head } = Astro.props;
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <Header />
-    <main id="main" class={narrow ? 'prose-wrap' : 'wrap'}>
-      <slot />
-    </main>
+    <div class="shell">
+      <Header />
+      <main id="main" class={narrow ? 'prose-wrap' : 'wrap'}>
+        <slot />
+      </main>
+    </div>
     <Footer />
   </body>
 </html>

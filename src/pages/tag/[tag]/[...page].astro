@@ -37,9 +37,9 @@ const { page, tagName } = Astro.props as { page: Page<Post>; tagName: string };
     <p class="meta">{page.total} {page.total === 1 ? 'post' : 'posts'}</p>
   </header>
 
-  <ul class="post-grid">
-    {page.data.map((post) => <PostCard post={post} />)}
-  </ul>
+  <ol class="post-list">
+    {page.data.map((post, i) => <PostCard post={post} index={i + 1} />)}
+  </ol>
 
   <Pagination
     prevUrl={page.url.prev}

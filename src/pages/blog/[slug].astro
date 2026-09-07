@@ -118,11 +118,11 @@ const canonical = absUrl(postPath(post), Astro.site);
           <h2 id="related-heading" style="margin-block-end: 1.25rem;">
             Related posts
           </h2>
-          <ul class="post-grid">
-            {related.map((item) => (
-              <PostCard post={item} />
+          <ol class="post-list">
+            {related.map((item, i) => (
+              <PostCard post={item} index={i + 1} />
             ))}
-          </ul>
+          </ol>
         </section>
       )
     }

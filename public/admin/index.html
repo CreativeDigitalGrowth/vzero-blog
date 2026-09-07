@@ -7,10 +7,13 @@
     <title>Content Manager</title>
 
     <!--
-      Config lives beside this file. The href is relative on purpose: the site is
-      served from a sub-path (/blog/), so an absolute /admin/config.yml would 404.
+      Absolute path, deliberately not relative. This site is root-served (base: '/'),
+      and Vercel serves /admin (no trailing slash) as this same file *without*
+      redirecting to /admin/ first — so a relative "config.yml" href resolves against
+      "/" instead of "/admin/" and 404s whenever a visitor omits the trailing slash.
+      An absolute path works regardless of which form was requested.
     -->
-    <link href="config.yml" type="text/yaml" rel="cms-config-url" />
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
   </head>
   <body>
     <!--

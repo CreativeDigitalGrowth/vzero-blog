@@ -3,8 +3,11 @@
 A solo-author static blog: Astro 7 + TypeScript, Sveltia CMS, Pagefind search, Giscus
 comments — the same proven scaffold as the sibling GitHub Pages, GitLab Pages and
 Cloudflare Pages blogs, but with its own codebase, content and visual design going
-forward. **Local-only for now**: no remote git repo, no deployed host, no real domain.
-See "Placeholders to fill in" below before this ever ships.
+forward.
+
+**Deployed** at https://creativedigitalgrowth.vercel.app/ via v0.app -> Vercel, connected
+to `CreativeDigitalGrowth/vzero-blog` on GitHub (`main`, auto-deploys on push). One item
+still open — see "Still to configure" below.
 
 ## Design language
 
@@ -32,22 +35,25 @@ After every `npm install` or `npm ci`:
 npm install --no-save --force @astrojs/compiler-binding-wasm32-wasi
 ```
 
-## Editing content before a real repo exists
+## Editing content
 
-The CMS at `/admin/` needs a real git host to commit to for its normal GitHub-backed
-login. Until this project has one, use the **local backend** instead — Sveltia's
-`local_backend: true` (already set in `public/admin/config.yml`) lets it read and write
-this working copy directly through the browser's File System Access API (Chromium-based
-browsers only):
+The CMS at `/admin/` on the live site uses the GitHub backend — **"Sign In Using Access
+Token"** with a fine-grained PAT scoped to `CreativeDigitalGrowth/vzero-blog` (same
+pattern as the sibling Cloudflare blog; **not** "Sign In with GitHub", which hangs — see
+that project's `docs/troubleshooting.md`). Saving is a commit to `main`, which Vercel
+picks up automatically.
+
+Locally, `local_backend: true` (set in `public/admin/config.yml`) is also still
+available — it lets Sveltia read and write this working copy directly through the
+browser's File System Access API (Chromium-based browsers only), useful for editing
+without every save reaching the live site immediately:
 
 ```bash
 npm run dev
 ```
 
 Open **http://localhost:4321/admin/index.html** (the explicit filename is required in
-dev — see the sibling blogs' troubleshooting notes) and choose **"Work with Local
-Repository"**. Saves land as ordinary file changes in `src/content/blog/`, inspectable
-with `git diff` before committing — no GitHub account or token needed at this stage.
+dev) and choose **"Work with Local Repository"**.
 
 ## Rules that are easy to get wrong
 
@@ -78,21 +84,16 @@ and `src/content.config.ts` are one contract.
 
 **`public/admin/config.yml` is YAML.** Quote any string containing `: `.
 
-## Placeholders to fill in once this ships
+## Still to configure
 
-Nothing here works "by accident" — these are deliberately fake values, not bugs:
-
-- `astro.config.mjs` — `site: 'https://vzero-blog.example.com'`
-- `public/admin/config.yml` — `backend.repo`, `site_url`, `display_url`
-- `public/robots.txt` — the `Sitemap:` line
-- `src/consts.ts` — `GISCUS.repo` (empty; Giscus needs a public GitHub repo with
-  Discussions enabled), `SOCIAL_LINKS` (empty), `AUTHOR_NAME`/`AUTHOR_BIO`/`AUTHOR_EMAIL`
-  (still template defaults)
-
-Update all of them together in one pass once a git host and a deploy target are chosen —
-see the sibling Cloudflare blog's `docs/setup.md` for one worked example of wiring a
-GitHub-backed CMS to a separately-hosted static build, if that is the route this project
-also takes.
+- `src/consts.ts` — `GISCUS.repo` (empty until GitHub Discussions is enabled on
+  `CreativeDigitalGrowth/vzero-blog` — needs repo admin, not just push access),
+  `SOCIAL_LINKS` (empty), `AUTHOR_NAME`/`AUTHOR_BIO`/`AUTHOR_EMAIL` (still template
+  defaults)
+- A custom domain, if `creativedigitalgrowth.vercel.app` is not the permanent home —
+  update it together in `astro.config.mjs`, `public/admin/config.yml`
+  (`site_url`/`display_url`) and `public/robots.txt` in one pass, same as any Vercel
+  custom-domain switch.
 
 ## Before calling a change done
 

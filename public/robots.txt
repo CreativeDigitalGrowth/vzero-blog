@@ -1,7 +1,9 @@
-# Placeholder — update the host below once this project is deployed (see README.md).
+# Served at https://creativedigitalgrowth.vercel.app/robots.txt
+#
+# Deployed via v0.app -> Vercel, served from its own domain root.
 
 User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://vzero-blog.example.com/sitemap-index.xml
+Sitemap: https://creativedigitalgrowth.vercel.app/sitemap-index.xml

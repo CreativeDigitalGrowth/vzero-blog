@@ -10,10 +10,10 @@ design and its own content:
 - **vzero-blog (this project)** — bold, high-contrast, thick borders and hard offset
   shadows; a print-zine/neo-brutalist register
 
-**Status: local-only.** There is no remote git repo and no deployed host yet — this is
-scaffolded and working on this machine only. See [CLAUDE.md](CLAUDE.md) for the full
-list of placeholder values (site URL, CMS backend repo, Giscus, socials) to fill in
-before it ships anywhere.
+**Live at https://creativedigitalgrowth.vercel.app/** — deployed via v0.app -> Vercel,
+connected to [CreativeDigitalGrowth/vzero-blog](https://github.com/CreativeDigitalGrowth/vzero-blog)
+on GitHub (`main`, auto-deploys on push). See [CLAUDE.md](CLAUDE.md) for what's still
+left to configure (Giscus, socials, author details).
 
 ## Quick start
 
@@ -30,10 +30,10 @@ Repository"** — no account needed yet, see CLAUDE.md).
 ## Features
 
 - Content collections with a Zod-validated frontmatter schema
-- Sveltia CMS at `/admin/`, editable locally before any git host is chosen
+- Sveltia CMS at `/admin/`, GitHub-backed (or local-backend for offline editing)
 - Categories and tags, each with their own paginated archive
 - Full-text search (Pagefind) — works against `npm run preview`, not `npm run dev`
-- Giscus comments (kept unconfigured until a public GitHub repo exists)
+- Giscus comments (kept unconfigured until GitHub Discussions is enabled on the repo)
 - RSS feed, sitemap, per-post JSON-LD, light/dark theme toggle
 - Optional About / Search / Contact pages, gated behind flags in `src/consts.ts`
 - Optional Google Maps embed per post

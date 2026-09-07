@@ -2,13 +2,11 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Hosting is not decided yet (this project is local-only for now — see README.md).
-// `site` is a placeholder; update it together with public/admin/config.yml's
-// site_url/display_url and public/robots.txt's Sitemap line once a real domain
-// exists. src/lib/url.ts mediates every internal link, so the site can move under
-// a sub-path (or a different domain) later by changing `site`/`base` here alone.
+// Deployed via v0.app -> Vercel, connected to CreativeDigitalGrowth/vzero-blog on
+// GitHub. src/lib/url.ts mediates every internal link, so the site can move under a
+// sub-path (or a different domain) later by changing `site`/`base` here alone.
 export default defineConfig({
-  site: 'https://vzero-blog.example.com',
+  site: 'https://creativedigitalgrowth.vercel.app',
   trailingSlash: 'always',
   integrations: [
     sitemap({
